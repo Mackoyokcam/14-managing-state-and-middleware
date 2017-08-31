@@ -4,7 +4,8 @@ var app = app || {};
 (function(module) {
   const newArticle = {};
 
-  // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  // DONE: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  // This function showing the all the sections with .tab-content. Export-field and article-json is old code and is not being used anymore. Then sets event handlers on change and submit depending on if you are creating or submitting a new article. newArticle.create/submit is found in newArticle.js.
   newArticle.initNewArticlePage = function() {
     $('.tab-content').show();
     $('#export-field').hide();

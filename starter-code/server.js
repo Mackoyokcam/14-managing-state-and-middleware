@@ -18,8 +18,9 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static('./public'));
 
 
-// COMMENT: What is this function doing? Why do we need it? Where does it receive a request from?
+// DONE: What is this function doing? Why do we need it? Where does it receive a request from?
 // (put your response in a comment here)
+// This function is a proxy method which acts as middleware for our request to a github api with a github token. It is being called below by app.get, app.get gets its request from requestRepos, we need it to protect our token when we deploy our site to an outside server (heroku).
 function proxyGitHub(request, response) {
   console.log('Routing GitHub request for', request.params[0]);
   (requestProxy({
@@ -29,8 +30,9 @@ function proxyGitHub(request, response) {
 }
 
 
-// COMMENT: What is this route doing? Where does it receive a request from?
+// DONE: What is this route doing? Where does it receive a request from?
 // (put your response in a comment here)
+// This route sends the new.html page back to the browser, it can only recieve a request from entering a url with /new at the end.
 app.get('/new', (request, response) => response.sendFile('new.html', {root: './public'}));
 app.get('/admin', (request, response) => response.sendFile('admin.html', {root: './public'}));
 app.get('/github/*', proxyGitHub);
@@ -106,8 +108,9 @@ app.post('/articles', function(request, response) {
 });
 
 
-// COMMENT: What is this route doing? Where does it receive a request from?
+// DONE: What is this route doing? Where does it receive a request from?
 // (put your response in a comment here)
+// This route is being called by Article.updateRecord, it updates an article and author table in postgres that matches the id paramater which is being sent.
 app.put('/articles/:id', (request, response) => {
   client.query(`
     UPDATE authors
